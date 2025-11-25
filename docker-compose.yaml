@@ -1,10 +1,28 @@
+version: "1.0"
+
 services:
   mc-server:
     build: .
     container_name: minecraft-server
     ports:
-      - "8888:25565"
+      - "8888:25565"  # Host:Container mapping
     environment:
-      EULA: "TRUE"
+      # ===============================
+      # Non-critical Minecraft server variables
+      # ===============================
+      EULA: "TRUE"            # Required by Minecraft
+      MAX_MEMORY: "2G"         # Max JVM heap memory
+      MIN_MEMORY: "1G"         # Min JVM heap memory
+      MOTD: "Welcome to my Docker Minecraft Server"  # Message of the day
+      DIFFICULTY: "normal"    # easy, normal, hard, peaceful
+      GAMEMODE: "survival"    # survival, creative, adventure, spectator
+      ENABLE_QUERY: "true"    # Needed to allow mcstatus query()
+      QUERY_PORT: 25565       # Query port
     volumes:
-      - ./minecraft-data:/minecraft/world
+      # ===============================
+      # Persistent storage for server files
+      # ===============================
+      - ./minecraft-data:/minecraft/world        # All server files, worlds, configs, logs
+    restart: unless-stopped
+    tty: true
+    stdin_open: true

@@ -5,11 +5,11 @@ A Docker-powered Minecraft server environment built manually rather than using r
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
-2. [Quickstart](#quickstart)
+2. [Quickstart](#-quickstart)
 3. [Usage](#-usage)
-   - [Checking Server Status](#-checking-server-status)
+   - [Checking Server Status](#checking-server-status)
    - [Create a Docker Container](#-create-a-docker-container)
-   - [Docker Management Commands](#-docker-management-commands)
+   - [Docker Management Commands](#docker-compose-commands)
 4. [Project Checklist](#project-checklist)
 
 ## Prerequisites
@@ -34,8 +34,7 @@ Download your Minecraft Server from https://www.minecraft.net/de-de/download/ser
 
 Copy your downloaded .jar file into your root directory of your project.
 
-From here you can build Docker the Docker Container and start the Server with Docker Compose:
-
+From here, you can build the Docker container and start the server with Docker Compose:
 ```
 docker compose build --no-cache
 ```
@@ -43,15 +42,13 @@ docker compose build --no-cache
 ```
 docker compose up
 ```
-Instandly you can see the minecraft-server logs.
-You can call the logs with 
 
+You can instantly see the Minecraft server logs with:
 ```
 docker logs -f minecraft-server
 ```
 
-In case of errors you can remove the containers and build from new:
-
+In case of errors, you can remove the containers and rebuild from scratch:
 ```
 docker compose down
 ```
@@ -59,12 +56,11 @@ docker compose down
 
 ## 🧑‍💻 Usage
 
+### Checking Server Status
 
-###  ☑️ Checking Server Status
+To check the server status, use a Python script leveraging the mcstatus library: https://github.com/py-mine/mcstatus
 
-For checking the server status there is a python script. Please check this repository: https://github.com/py-mine/mcstatus
-
-First of all need to create a virtual environment
+First, create a virtual environment:
 ```
 python -m venv venv
 ```
@@ -91,35 +87,78 @@ To get the current server status, run this:
 python minecraft_server_status
 ```
 
-The [minecraft_server_status script](./minecraft_server_status) creates a client to establish a connection to the port, where the server is running.
-After this the server status is called.
+The [minecraft_server_status script](./minecraft_server_status) acts as a client that connects to the server's port. It then queries the server to retrieve its current status.
 
 ### 🐳 Create a Docker Container
 
 To containerize your project, create a file named [Dockerfile](./Dockerfile)
-
 To reduce image size and improve build performance, create a [.dockerignore](./.dockerignore) file.
 
-### 🧭 Docker Management Commands
+### Docker Compose Commands
 
-List all images you’ve built or pulled
+Build the Docker image according to your Dockerfile.
 ```
-docker image ls
-```
-
-Remove specific images
-```
-docker rmi <docker_image_id>
+docker compose build
 ```
 
-See running containers:
+Build with no cache (forces a full rebuild).
 ```
-docker ps
+docker compose build --no-cache
 ```
 
-Stop running container:
+Starts the container in the foreground (logs will appear in terminal)
 ```
-docker stop <docker_container_id>
+docker compose up
+```
+
+Start the server in detached mode (runs in the background)
+```
+docker compose up -d
+```
+
+Build and start at the same time
+```
+docker compose up --build
+```
+
+Build and start in detached mode
+```
+docker compose up --build -d
+```
+
+Stops the running container(s) without removing them
+```
+docker compose stop
+```
+
+Restart container(s) that are already running
+```
+docker compose restart
+```
+
+Stop and remove containers, networks, and default volumes for a full cleanup or resetting the environment
+```
+docker compose down
+```
+
+View server logs, follow logs in real time
+```
+docker compose logs -f
+```
+
+Show logs without following
+```
+docker compose logs
+```
+
+Enter the container, open an interactive shell inside the running container
+```
+docker exec -it minecraft-server /bin/sh
+```
+
+Check running containers
+```
+docker compose ps
 ```
 
 ## Project Checklist

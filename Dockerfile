@@ -19,11 +19,17 @@ COPY server.jar /minecraft/server.jar
 ENV EULA=true
 
 # ===============================
+# 5. Setting memory env variables
+# ===============================
+ENV MAX_MEMORY=2G
+ENV MIN_MEMORY=1G
+
+# ===============================
 # 6. Expose port
 # ===============================
 EXPOSE 25565
 
 # ===============================
-# 9. Runs Minecraft Server
+# 7. Runs Minecraft Server
 # ===============================
-CMD ["sh", "-c", "echo eula=$EULA > eula.txt && java -Xmx2G -Xms1G -jar server.jar nogui"]
+CMD ["sh", "-c", "echo eula=$EULA > eula.txt && java -Xmx${MAX_MEMORY:-2G} -Xms${MIN_MEMORY:-1G} -jar server.jar nogui"]
