@@ -17,7 +17,7 @@ A Docker-powered Minecraft server environment built manually rather than using r
 Before you begin, ensure that the following are installed and set up on your local machine or server:
 - [Docker](https://docs.docker.com/get-docker/)
 
-Info: Docker Compose is automatically included with Docker Desktop and Docker Engine.
+Info: Docker Compose is automatically included in Docker Desktop and Docker Engine.
 
 ## 🚀 Quickstart
 
@@ -58,7 +58,7 @@ In case of errors, you can remove the containers and rebuild from scratch:
 docker compose down
 ```
 
-Please check the list of typical docker compose in the section [Docker Management Commands](#docker-compose-commands)
+Please check the list of typical Docker commands in the section [Docker Management Commands](#docker-compose-commands)
 
 ## 🧑‍💻 Usage
 
@@ -100,14 +100,12 @@ To get the current server status, run this:
 python minecraft_server_status
 ```
 
-The [minecraft_server_status script](./minecraft_server_status) acts as a client that connects to the server's port. It then queries the server to retrieve its current status.
+The [minecraft_server_status script.py](./minecraft_server_status.py) acts as a client that connects to the server's port. It then queries the server to retrieve its current status.
 
 ### 🐳 Create a Docker Container
 
-To containerize your project, create a file named [Dockerfile](./Dockerfile)
+To containerize your project, create a file named [Dockerfile](./Dockerfile).
 To reduce image size and improve build performance, create a [.dockerignore](./.dockerignore) file.
-
-### Docker Compose Commands
 
 ### Docker Compose Commands
 
