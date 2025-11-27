@@ -1,0 +1,24 @@
+services:
+  mc-server:
+    build: .
+    container_name: minecraft-server
+    ports:
+      - "8888:25565"  # Host:Container mapping
+    environment:
+      EULA: ${EULA}
+      MAX_MEMORY: ${MAX_MEMORY}
+      MIN_MEMORY: ${MIN_MEMORY}
+      MOTD: ${MOTD}
+      DIFFICULTY: ${DIFFICULTY}
+      GAMEMODE: ${GAMEMODE}
+      ENABLE_QUERY: ${ENABLE_QUERY}
+      QUERY_PORT: ${QUERY_PORT}
+    volumes:
+      - minecraft-data:/minecraft/world # Docker manages the volume internally, this is more secure, and prevents accidental corruption.
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+
+volumes:
+  minecraft-data: # Docker will then store your data in: /var/lib/docker/volumes/minecraft-data/_data
+
