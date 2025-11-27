@@ -17,7 +17,8 @@ A Docker-powered Minecraft server environment built manually rather than using r
 Before you begin, ensure that the following are installed and set up on your local machine or server:
 - [Docker](https://docs.docker.com/get-docker/)
 
-Info: Docker Compose is automatically included in Docker Desktop and Docker Engine.
+> [!NOTE] 
+> Docker Compose is automatically included in Docker Desktop and Docker Engine.
 
 ## 🚀 Quickstart
 
