@@ -17,6 +17,8 @@ A Docker-powered Minecraft server environment built manually rather than using r
 Before you begin, ensure that the following are installed and set up on your local machine or server:
 - [Docker](https://docs.docker.com/get-docker/)
 
+Info: Docker Compose is automatically included with Docker Desktop and Docker Engine.
+
 ## 🚀 Quickstart
 
 Clone this repository and follow the setup instructions below to get the application running.
@@ -30,6 +32,9 @@ Classic HTTPS (if no SSH Keys are provided to GitHub)
 ```
 git clone https://github.com/MWorksCoding/minecraft-server.git
 ```
+
+Navigate to the root project directory you just cloned.
+
 Download your Minecraft Server from https://www.minecraft.net/de-de/download/server: https://piston-data.mojang.com/v1/objects/95495a7f485eedd84ce928cef5e223b757d2f764/server.jar
 
 Copy your downloaded .jar file into your root directory of your project.
@@ -53,6 +58,7 @@ In case of errors, you can remove the containers and rebuild from scratch:
 docker compose down
 ```
 
+Please check the list of typical docker compose in the section [Docker Management Commands](#docker-compose-commands)
 
 ## 🧑‍💻 Usage
 
@@ -75,6 +81,13 @@ Activate your venv on Windows:
 .\venv\Scripts\activate
 ```
 
+Inside your project root directory, create a .env file with your environment variables.
+
+Add your configuration variables, check [example.env](./example.env).
+You can copy and paste the content, but please keep in mind that the values ​​should only be used for local development for security reasons.
+
+Docker Compose automatically loads .env files, so you don’t need to reference it manually.
+
 Install dependencies:
 ```
 pip install -r requirements.txt
@@ -96,70 +109,23 @@ To reduce image size and improve build performance, create a [.dockerignore](./.
 
 ### Docker Compose Commands
 
-Build the Docker image according to your Dockerfile.
-```
-docker compose build
-```
+### Docker Compose Commands
 
-Build with no cache (forces a full rebuild).
-```
-docker compose build --no-cache
-```
-
-Starts the container in the foreground (logs will appear in terminal)
-```
-docker compose up
-```
-
-Start the server in detached mode (runs in the background)
-```
-docker compose up -d
-```
-
-Build and start at the same time
-```
-docker compose up --build
-```
-
-Build and start in detached mode
-```
-docker compose up --build -d
-```
-
-Stops the running container(s) without removing them
-```
-docker compose stop
-```
-
-Restart container(s) that are already running
-```
-docker compose restart
-```
-
-Stop and remove containers, networks, and default volumes for a full cleanup or resetting the environment
-```
-docker compose down
-```
-
-View server logs, follow logs in real time
-```
-docker compose logs -f
-```
-
-Show logs without following
-```
-docker compose logs
-```
-
-Enter the container, open an interactive shell inside the running container
-```
-docker exec -it minecraft-server /bin/sh
-```
-
-Check running containers
-```
-docker compose ps
-```
+| Command | Description |
+|--------|-------------|
+| `docker compose build` | Build the Docker image according to your Dockerfile. |
+| `docker compose build --no-cache` | Build from scratch without using cached layers. |
+| `docker compose up` | Start the container in the foreground (logs visible). |
+| `docker compose up -d` | Start the container in detached/background mode. |
+| `docker compose up --build` | Build and start containers at the same time. |
+| `docker compose up --build -d` | Build and start containers in detached mode. |
+| `docker compose stop` | Stop running containers without removing them. |
+| `docker compose restart` | Restart all running services. |
+| `docker compose down` | Stop and remove containers, networks, and volumes. |
+| `docker compose logs -f` | Follow logs in real time. |
+| `docker compose logs` | Show logs without following. |
+| `docker exec -it minecraft-server /bin/sh` | Open an interactive shell inside the running container. |
+| `docker compose ps` | List running containers. |
 
 ## Project Checklist
 

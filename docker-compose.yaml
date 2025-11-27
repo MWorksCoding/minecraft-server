@@ -1,5 +1,3 @@
-version: "1.0"
-
 services:
   mc-server:
     build: .
@@ -7,22 +5,20 @@ services:
     ports:
       - "8888:25565"  # Host:Container mapping
     environment:
-      # ===============================
-      # Non-critical Minecraft server variables
-      # ===============================
-      EULA: "TRUE"            # Required by Minecraft
-      MAX_MEMORY: "2G"         # Max JVM heap memory
-      MIN_MEMORY: "1G"         # Min JVM heap memory
-      MOTD: "Welcome to my Docker Minecraft Server"  # Message of the day
-      DIFFICULTY: "normal"    # easy, normal, hard, peaceful
-      GAMEMODE: "survival"    # survival, creative, adventure, spectator
-      ENABLE_QUERY: "true"    # Needed to allow mcstatus query()
-      QUERY_PORT: 25565       # Query port
+      EULA: ${EULA}
+      MAX_MEMORY: ${MAX_MEMORY}
+      MIN_MEMORY: ${MIN_MEMORY}
+      MOTD: ${MOTD}
+      DIFFICULTY: ${DIFFICULTY}
+      GAMEMODE: ${GAMEMODE}
+      ENABLE_QUERY: ${ENABLE_QUERY}
+      QUERY_PORT: ${QUERY_PORT}
     volumes:
-      # ===============================
-      # Persistent storage for server files
-      # ===============================
-      - ./minecraft-data:/minecraft/world        # All server files, worlds, configs, logs
+      - minecraft-data:/minecraft/world # Docker manages the volume internally, this is more secure, and prevents accidental corruption.
     restart: unless-stopped
     tty: true
     stdin_open: true
+
+volumes:
+  minecraft-data: # Docker will then store your data in: /var/lib/docker/volumes/minecraft-data/_data
+
