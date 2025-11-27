@@ -104,8 +104,13 @@ The [minecraft_server_status script.py](./minecraft_server_status.py) acts as a 
 
 ### 🐳 Create a Docker Container
 
-To containerize your project, create a file named [Dockerfile](./Dockerfile).
-To reduce image size and improve build performance, create a [.dockerignore](./.dockerignore) file.
+General Informations:
+
+To containerize a project, we need to create a file named [Dockerfile](./Dockerfile).
+To reduce image size and improve build performance, we need to create a [.dockerignore](./.dockerignore) file.
+That [docker-compose.yml](./docker-compose.yaml) file tells Docker exactly how to build, run, configure, and manage your project — all in one place.
+
+In our case all required files already exist. There is nothing to do here.
 
 ### Docker Compose Commands
 
