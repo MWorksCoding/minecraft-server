@@ -34,10 +34,18 @@ git clone https://github.com/MWorksCoding/minecraft-server.git
 ```
 
 Navigate to the root project directory you just cloned.
+```
+cd minecraft-server
+```
 
 Download your Minecraft Server from https://www.minecraft.net/de-de/download/server: https://piston-data.mojang.com/v1/objects/95495a7f485eedd84ce928cef5e223b757d2f764/server.jar
 
 Copy your downloaded .jar file into your root directory of your project.
+
+Inside your project root directory, we need to create a .env file for your environment variables.
+You can copy and paste the content from [example.env](./example.env), but please keep in mind that the values ​​should only be used for local development for security reasons.
+
+Docker Compose automatically loads .env files, so you don’t need to reference it manually.
 
 From here, you can build the Docker container and start the server with Docker Compose:
 ```
@@ -80,13 +88,6 @@ Activate your venv on Windows:
 ```
 .\venv\Scripts\activate
 ```
-
-Inside your project root directory, create a .env file with your environment variables.
-
-Add your configuration variables, check [example.env](./example.env).
-You can copy and paste the content, but please keep in mind that the values ​​should only be used for local development for security reasons.
-
-Docker Compose automatically loads .env files, so you don’t need to reference it manually.
 
 Install dependencies:
 ```
